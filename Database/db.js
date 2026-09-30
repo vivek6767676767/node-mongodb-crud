@@ -1,8 +1,6 @@
-require('dotenv').config();
-
 const { MongoClient } = require('mongodb');
 
-const url = process.env.MONGO_URL;
+const url = "mongodb+srv://cursed674u_db_user:Password123@cluster0.bhp2mcq.mongodb.net/?appName=Cluster0";
 
 const client = new MongoClient(url);
 
@@ -16,16 +14,15 @@ const connectDB = async () => {
 
         console.log("MongoDB connected successfully");
 
-        db = client.db(dbName);
-
-        return db;
-
+        db =  client.db(dbName);
+      return db;
     } catch (error) {
         console.log("MongoDB connection failed");
         console.log(error);
     }
 };
 
+ 
+
 module.exports = {
-    connectDB
-};
+    connectDB}
