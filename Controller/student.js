@@ -1,10 +1,11 @@
 const database = require('../Database/db');
 
 
-// ================= GET =================
+// =========================
+// GET STUDENTS
+// =========================
 
 const getstudentdata = async (req, res) => {
-
     try {
 
         const db = await database.connectDB();
@@ -16,7 +17,7 @@ const getstudentdata = async (req, res) => {
 
         res.send({
             status: 200,
-            message: "Get data",
+            message: "Student data",
             data: result
         });
 
@@ -24,24 +25,22 @@ const getstudentdata = async (req, res) => {
 
         console.log(error);
 
-        res.send({
+        res.status(500).send({
             status: 500,
             message: "Something went wrong",
             error: error.message
         });
 
     }
-
 };
 
 
-// ================= POST =================
+// =========================
+// INSERT STUDENT
+// =========================
 
 const insertstudentdata = async (req, res) => {
-
     try {
-
-        console.log(req.body);
 
         const db = await database.connectDB();
 
@@ -49,45 +48,31 @@ const insertstudentdata = async (req, res) => {
             .collection('student')
             .insertOne(req.body);
 
-        console.log(result);
-
-        if (result.acknowledged === true) {
-
-            res.send({
-                status: 200,
-                message: "Record inserted",
-                data: result
-            });
-
-        } else {
-
-            res.send({
-                status: 500,
-                message: "Something went wrong",
-                data: result
-            });
-
-        }
+        res.send({
+            status: 200,
+            message: "Student data inserted",
+            data: result
+        });
 
     } catch (error) {
 
         console.log(error);
 
-        res.send({
+        res.status(500).send({
             status: 500,
             message: "Something went wrong",
             error: error.message
         });
 
     }
-
 };
 
 
-// ================= PUT =================
+// =========================
+// UPDATE STUDENT
+// =========================
 
 const updatestudentdata = async (req, res) => {
-
     try {
 
         const db = await database.connectDB();
@@ -96,50 +81,43 @@ const updatestudentdata = async (req, res) => {
             .collection('student')
             .updateOne(
                 { name: req.query.name },
-                {
-                    $set: req.body
-                }
+                { $set: req.body }
             );
 
-        console.log(result);
+        if (result.matchedCount === 0) {
 
-        if (result.matchedCount >= 1) {
-
-            res.send({
-                status: 200,
-                message: "Record updated",
-                data: result
-            });
-
-        } else {
-
-            res.send({
+            return res.status(404).send({
                 status: 404,
-                message: "Student not found",
-                data: result
+                message: "Student not found"
             });
 
         }
+
+        res.send({
+            status: 200,
+            message: "Student data updated",
+            data: result
+        });
 
     } catch (error) {
 
         console.log(error);
 
-        res.send({
+        res.status(500).send({
             status: 500,
             message: "Something went wrong",
             error: error.message
         });
 
     }
-
 };
 
 
-// ================= DELETE =================
+// =========================
+// DELETE STUDENT
+// =========================
 
 const deletestudentdata = async (req, res) => {
-
     try {
 
         const db = await database.connectDB();
@@ -150,38 +128,32 @@ const deletestudentdata = async (req, res) => {
                 name: req.query.name
             });
 
-        console.log(result);
+        if (result.deletedCount === 0) {
 
-        if (result.deletedCount >= 1) {
-
-            res.send({
-                status: 200,
-                message: "Record deleted",
-                data: result
-            });
-
-        } else {
-
-            res.send({
+            return res.status(404).send({
                 status: 404,
-                message: "Student not found",
-                data: result
+                message: "Student not found"
             });
 
         }
+
+        res.send({
+            status: 200,
+            message: "Student data deleted",
+            data: result
+        });
 
     } catch (error) {
 
         console.log(error);
 
-        res.send({
+        res.status(500).send({
             status: 500,
             message: "Something went wrong",
             error: error.message
         });
 
     }
-
 };
 
 

@@ -7,7 +7,9 @@ const teacher = require('../Controller/teacher');
 const course = require('../Controller/course');
 
 
-// ================= STUDENT =================
+// =========================
+// STUDENT
+// =========================
 
 router.get('/student/getdata', st.getstudentdata);
 
@@ -18,7 +20,9 @@ router.put('/student/updatedata', st.updatestudentdata);
 router.delete('/student/deletedata', st.deletestudentdata);
 
 
-// ================= TEACHER =================
+// =========================
+// TEACHER
+// =========================
 
 router.get('/teacher/getdata', teacher.getteacherdata);
 
@@ -29,7 +33,9 @@ router.put('/teacher/updatedata', teacher.updateteacherdata);
 router.delete('/teacher/deletedata', teacher.deleteteacherdata);
 
 
-// ================= COURSE =================
+// =========================
+// COURSE
+// =========================
 
 router.get('/course/getdata', course.getcoursedata);
 
@@ -40,7 +46,9 @@ router.put('/course/updatedata', course.updatecoursedata);
 router.delete('/course/deletedata', course.deletecoursedata);
 
 
-// ================= HOME =================
+// =========================
+// EJS HOME
+// =========================
 
 router.get('/home', (req, res) => {
     res.render('index');

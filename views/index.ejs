@@ -1,11 +1,110 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>My EJS Page</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CRUD Management System</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            background-color: #f4f6f8;
+        }
+
+        .container {
+            width: 80%;
+            margin: 50px auto;
+            text-align: center;
+        }
+
+        h1 {
+            color: #222;
+            margin-bottom: 10px;
+        }
+
+        p {
+            color: #555;
+        }
+
+        .button-container {
+            margin-top: 40px;
+        }
+
+        button {
+            padding: 15px 30px;
+            margin: 10px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+            background-color: #007bff;
+            color: white;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        .student {
+            background-color: #28a745;
+        }
+
+        .student:hover {
+            background-color: #1e7e34;
+        }
+
+        .teacher {
+            background-color: #ff9800;
+        }
+
+        .teacher:hover {
+            background-color: #e68900;
+        }
+
+        .course {
+            background-color: #9c27b0;
+        }
+
+        .course:hover {
+            background-color: #7b1fa2;
+        }
+    </style>
 </head>
+
 <body>
 
-    <h1>Hello from EJS!</h1>
+    <div class="container">
+
+        <h1>CRUD Management System</h1>
+
+        <p>
+            Manage Student, Teacher and Course data
+        </p>
+
+        <div class="button-container">
+
+            <!-- Student Button -->
+            <button class="student"
+                    onclick="window.location.href='/student'">
+                Student
+            </button>
+
+            <!-- Teacher Button -->
+            <button class="teacher"
+                    onclick="window.location.href='/teacher'">
+                Teacher
+            </button>
+
+            <!-- Course Button -->
+            <button class="course"
+                    onclick="window.location.href='/course'">
+                Course
+            </button>
+
+        </div>
+
+    </div>
 
 </body>
 </html>

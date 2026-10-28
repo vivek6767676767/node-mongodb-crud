@@ -1,14 +1,30 @@
 const express = require('express');
-const cors=require('cors')
+const cors = require('cors');
+
 const app = express();
-app.set('view engine', 'ejs');
-app.use(cors())
+
+const router = require('./Router/index');
+
+// CORS
+app.use(cors());
+
+// JSON data
 app.use(express.json());
 
-const router = require('./Router');
+// EJS
+app.set('view engine', 'ejs');
 
+// Routes
 app.use('/', router);
 
-app.listen(3001, () => {
-    console.log('Server running on http://localhost:3001');
+// Home
+app.get('/', (req, res) => {
+    res.send('Backend API is running');
+});
+
+// Server
+const PORT = process.env.PORT || 3001;
+
+app.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`);
 });
